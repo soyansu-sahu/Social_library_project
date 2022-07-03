@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="text-center">
+
+        <div class="row">
+            <table class="table table-bordered mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Cover</th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Author Name</th>
+                        <th scope="col"> Read </th>
+                        <th scope="col"> Download </th>
+                        <th scope="col"> Delete Book </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td><img src="{{ book.cover.url }}" alt="{{ book.title}}" style="height: 100px; width: 100px">
+                        </td>
+                        <td>{{book.titlee}}</td>
+                        <!-- <td>{{book.author}}</td> -->
+
+                        <!-- link baniba name re -->
+                        <td>
+                            <a href="{% url 'user_profile' book.author %}">{{book.author}}</a>
+                        </td>
+
+
+                        <td><a href="{{ book.pdf.url }}" class="btn btn-outline-primary" target="_blank">View
+                                PDF</a></td>
+                        <td><a href="{{ book.pdf.url }}" download class="btn btn-outline-success">Download PDF</a>
+                        </td>
+                        <td>
+
+                            <form action="{% url 'delete_book' book.id %}" method="post">{% csrf_token %}
+
+                                {% if user.is_superuser %}
+                                <button type="submit">Delete</button>
+                                {% elif user.username == book.author %}
+                                <button type="submit">Delete</button>
+                                {% else %}
+                                <button type="submit" disabled>Delete</button>
+                                {% endif %}
+                            </form>
+
+
+
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

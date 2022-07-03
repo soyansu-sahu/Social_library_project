@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Upload Book{% endblock %}
+
+{% block content %}
+<div class="container mt-5 ps-5 text-start">
+
+        <div class="center">
+            <form method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" value="Submit">Submit</button>
+
+            </form>
+        </div>
+</div>
+{% endblock %}

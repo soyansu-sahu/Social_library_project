@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}User Registration{% endblock %}
+
+{% block content %}
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<!-- {{messages}} -->
+
+{% if messages %}
+{% for message in messages %}
+<small {% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}} </small>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+
+
+<h1>Profile Page</h1>
+<h3>Welcome {{name}}</h3>
+
+{% if messages %}
+{% for message in messages %}
+<small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+{% endfor %}
+{% endif %}
+
+
+
+
+<!-- <p>Book Cover:<img src="{{ book.cover.url }}" alt="{{ book.titlee}}" style="height: 100px; width: 100px"></p> -->
+
+<p>Book Title: {{s_form.username}}</p>
+
+<p>Author Name: {{s_form.email}}</p>
+
+
+
+<a href="{{ book.pdf.url }}" class="btn btn-outline-primary" target="_blank">View
+    PDF</a>
+
+
+
+
+{% endblock %}

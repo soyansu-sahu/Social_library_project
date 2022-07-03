@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+
+
+<h1>Profile Page</h1>
+<h3>Welcome {{user}}</h3>
+
+{% if messages %}
+{% for message in messages %}
+<small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+{% endfor %}
+{% endif %}
+
+
+<!-- BOOKS -->
+
+
+{% for book in user_books %}
+
+    {{book.titlee}} | {{book.desc}} <br>
+{% endfor %}
+
+
+
+{% endblock %}
